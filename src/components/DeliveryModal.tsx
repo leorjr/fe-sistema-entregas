@@ -31,8 +31,8 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    width: '80%',
-    height: '80%',
+    width: '50%',
+    height: '50%',
     display: 'flex',
     flexDirection: 'column',
     padding: '20px',
@@ -149,7 +149,7 @@ const DeliveryModal: React.FC<DeliveryModalProps> = ({ delivery, onClose }) => {
   return (
     <Modal isOpen={!!delivery} onRequestClose={handleClose} contentLabel="Detalhes da Entrega" style={customStyles}>
       <Typography variant="h5" component="h2" gutterBottom>
-        {delivery ? `${delivery.nome} - ${new Date(delivery.data).toLocaleDateString()}` : ''}
+        {delivery ? `${delivery.nome.toUpperCase()} - ${new Date(delivery.data).toLocaleDateString()}` : ''}
       </Typography>
       {delivery && <div ref={mapRef} style={mapContainerStyle} />}
       <Box sx={{ textAlign: 'right', marginTop: '20px' }}>
