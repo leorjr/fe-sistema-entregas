@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import { Entrega } from './types/delivery';
 
 const App: React.FC = () => {
-  const [, setDeliveries] = useState<Entrega[]>([]);
+  const [deliveries, setDeliveries] = useState<Entrega[]>([]);
 
   const handleDeliveryCreated = (newDelivery: Entrega) => {
     setDeliveries((prevDeliveries) => [...prevDeliveries, newDelivery]);
