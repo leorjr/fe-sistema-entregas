@@ -1,3 +1,15 @@
+import {
+  Button,
+  Container,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getDeliveries } from '../services/deliveryService';
 import { Entrega } from '../types/delivery';
@@ -22,30 +34,54 @@ const DeliveryList: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Total de Entregas: {deliveries.length}</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          {deliveries.map((delivery) => (
-            <tr key={delivery.id} onClick={() => setSelectedDelivery(delivery)}>
-              <td>{delivery.id}</td>
-              <td>{delivery.nome}</td>
-              <td>{new Date(delivery.data).toLocaleDateString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {selectedDelivery && (
-        <DeliveryModal delivery={selectedDelivery} onClose={() => setSelectedDelivery(null)} />
-      )}
-    </div>
+    <Container maxWidth="lg">
+      <Paper elevation={3} sx={{ padding: 3, marginTop: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Lista de Entregas
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Nome</TableCell>
+                <TableCell>Data</TableCell>
+                <TableCell>Partida (Lat)</TableCell>
+                <TableCell>Partida (Long)</TableCell>
+                <TableCell>Destino (Lat)</TableCell>
+                <TableCell>Destino (Long)</TableCell>
+                <TableCell>Ações</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {deliveries.map((delivery) => (
+                <TableRow key={delivery.id} hover onClick={() => setSelectedDelivery(delivery)}>
+                  <TableCell>{delivery.id}</TableCell>
+                  <TableCell>{delivery.nome}</TableCell>
+                  <TableCell>{new Date(delivery.data).toLocaleDateString()}</TableCell>
+                  <TableCell>{delivery.partida.lat}</TableCell>
+                  <TableCell>{delivery.partida.long}</TableCell>
+                  <TableCell>{delivery.destino.lat}</TableCell>
+                  <TableCell>{delivery.destino.long}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => setSelectedDelivery(delivery)}
+                    >
+                      Ver Detalhes
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {selectedDelivery && (
+          <DeliveryModal delivery={selectedDelivery} onClose={() => setSelectedDelivery(null)} />
+        )}
+      </Paper>
+    </Container>
   );
 };
 

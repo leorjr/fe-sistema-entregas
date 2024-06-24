@@ -16,7 +16,6 @@ const App: React.FC = () => {
     <Router>
       <div>
         <Navbar />
-        <h1>Gestão de Entregas</h1>
         <Routes>
           <Route path="/create" element={<DeliveryForm onDeliveryCreated={handleDeliveryCreated} />} />
           <Route path="/" element={<DeliveryList />} />
