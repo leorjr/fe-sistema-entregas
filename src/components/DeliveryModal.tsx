@@ -23,7 +23,7 @@ interface DeliveryModalProps {
   onClose: () => void;
 }
 
-const customStyles = {
+const customStyles: ReactModal.Styles = {
   content: {
     top: '50%',
     left: '50%',
@@ -36,7 +36,7 @@ const customStyles = {
     display: 'flex',
     flexDirection: 'column',
     padding: '20px',
-    boxSizing: 'border-box',
+    boxSizing: 'border-box' as React.CSSProperties['boxSizing'], // Ajuste aqui
   },
 };
 
