@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CreateEntregaRequest, Entrega } from '../types/delivery';
 
-const API_URL = 'http://localhost:3000/api'; // Certifique-se de que esta URL está correta
+const API_URL = 'http://ec2-3-135-194-155.us-east-2.compute.amazonaws.com/api';
 
 interface GetDeliveriesResponse {
   success: boolean;
