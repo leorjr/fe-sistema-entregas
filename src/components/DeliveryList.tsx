@@ -6,7 +6,6 @@ import DeliveryModal from './DeliveryModal';
 const DeliveryList: React.FC = () => {
   const [deliveries, setDeliveries] = useState<Entrega[]>([]);
   const [selectedDelivery, setSelectedDelivery] = useState<Entrega | null>(null);
-  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     const fetchDeliveries = async () => {
@@ -14,7 +13,6 @@ const DeliveryList: React.FC = () => {
         const response = await getDeliveries();
         if (response.data.success) {
           setDeliveries(response.data.data.entregas);
-          setCount(response.data.data.count);
         }
       } catch (error) {
         console.error('Erro ao buscar entregas:', error);
@@ -25,7 +23,7 @@ const DeliveryList: React.FC = () => {
 
   return (
     <div>
-      <h2>Total de Entregas: {count}</h2>
+      <h2>Total de Entregas: {deliveries.length}</h2>
       <table>
         <thead>
           <tr>

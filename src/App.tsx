@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import DeliveryForm from './components/DeliveryForm';
 import DeliveryList from './components/DeliveryList';
+import Navbar from './components/Navbar';
 import { Entrega } from './types/delivery';
 
 const App: React.FC = () => {
@@ -14,6 +15,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
+        <Navbar />
         <h1>Gestão de Entregas</h1>
         <Routes>
           <Route path="/create" element={<DeliveryForm onDeliveryCreated={handleDeliveryCreated} />} />
