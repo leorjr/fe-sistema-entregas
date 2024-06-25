@@ -4,11 +4,16 @@ WORKDIR /app
 
 COPY package*.json ./
 
+# Instala todas as dependências do projeto
 RUN npm install
 
 COPY . .
 
-RUN npm run build
+# Adicione este comando para listar arquivos e verificar se a pasta dist está presente
+RUN ls -l /app
+
+# Execute o comando de build
+RUN npx vite build
 
 FROM nginx:alpine
 
